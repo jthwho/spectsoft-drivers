@@ -1,0 +1,1537 @@
+#
+# AJA card register information
+#
+#
+# Syntax:
+# @ <register name> <card register> <start bit> <stop bit> <read/write flags> {list|range|toggle|value}
+# <pretty name>
+# if LIST the following lines are the possible values of the register:
+# <value name> <numerical value>
+# if RANGE the following line is the range:
+# <bottom range> <top range>
+
+
+# Global Registers
+#
+
+@ framerate 0 0 2 rws list
+Frame Rate
+60 		1
+59.940 		2
+30 		3
+29.970 		4
+25 		5
+24 		6
+23.976 		7
+
+@ framegeo 0 3 6 rws list
+Frame Geometry
+1920x1080 	0
+1280x720 	1
+720x486 	2
+720x576 	3
+720x508 	6
+720x598 	7
+1920x1112 	8
+1280x740 	9
+2048x1080 	10
+2048x1556 	11
+
+@ standard 0 7 9 rws list
+Video Standard
+1080i 		0
+720p 		1
+480i 		2
+576i 		3
+1080p 		4
+
+@ refsource 0 10 11 rws list
+Reference Source
+refin 		0
+input1 		1
+input2 		2
+freerun 	3
+
+@ refvoltage 0 12 12 rws list
+Reference Voltage
+1v 		0
+4v 		1
+
+@ 1080pdual 0 15 15 rws list
+1080p50/60 dual link output enable
+disabled 	0
+enabled 	1
+
+@ leds 0 16 19 rw value
+Card LEDs
+
+@ regclocking 0 20 21 rws list
+Register Clocking
+field 		0
+frame 		1
+immediate 	2
+line10 		3
+
+@ framerate2k 0 22 22 rws list
+Extra bit for 2k framerates
+disabled 	0
+enabled 	1
+
+@ dlinput 0 23 23 rws list
+Enable Dual Link Input
+disabled 	0
+enabled 	1
+
+@ dloutput 0 27 27 rws list
+Enable Dual Link Output
+disabled 	0
+enabled 	1
+
+@ ch1rp188out 0 28 28 rws list
+Chan 1 RP-188 Output
+disabled 	0
+enabled 	1
+
+@ ch2rp188out 0 29 29 rws list
+Chan 2 RP-188 Output
+disabled 	0
+enabled 	1
+
+@ clutbank 0 30 31 rws list
+Color Correction Bank Select
+ch1bank0 	0
+ch1bank1 	1
+ch2bank0 	2
+ch2bank1 	3
+
+#
+# Chan 1 Registers
+
+@ ch1mode 1 0 0 rws list
+Chan 1 Mode
+playback 	0
+capture 	1
+
+# Note:
+# Model BGRA8 (2) is called ARGB in the AJA docs
+# and is listed as a Windows format.
+# Model ARGB8 (3) is called RGBA in the AJA docs
+# and is listed as a Mac format.
+# Model RGBA8 (6) is called ABGR in the AJA docs
+# and is listed as an OpenGL format.
+# We chose to identify these color models based
+# on thier true little endian byte order.
+@ ch1format 1 1 4 rws list
+Chan 1 Format
+ycbcr10 	0
+ycbcr8 		1
+bgra8 		2
+argb8 		3
+rgb10 		4
+ycbcr8_rev 	5
+rgba8 		6
+dpx_rgb10 	7
+dpx_ycbcr10 	8
+ycbcr8_dvcpro 	9
+ycbcr8_qrez 	10
+ycbcr8_hdv 	11
+rgb8 		12
+bgr8 		13
+dpx_rgb10_le 	15
+
+@ ch1alphainput2 1 5 5 rws list
+Chan 1 Alpha from Input 2
+disabled 	0
+enabled 	1
+
+@ ch1extformat 1 6 6 rws list
+Chan 1 extended format
+disabled 	0
+enabled 	1
+
+@ ch1writeback 1 8 8 rws list
+Chan 1 Writeback
+disabled 	0
+enabled 	1
+
+@ ch1squeeze 1 9 9 rws list
+Chan 1 Horizontal Squeeze
+disabled 	0
+enabled 	1
+
+@ ch1flipvert 1 10 10 rws list
+Chan 1 Flip Vertical
+disabled 	0
+enabled 	1
+
+@ ch1drtdisplay 1 11 11 rws list
+DRT Display?
+disabled 	0
+enabled 	1
+
+@ ch1sfield 1 12 12 rws list
+Chan 1 Single Field
+disabled 	0
+enabled 	1
+
+@ ch1dither 1 16 16 rws list
+Chan 1 Dither Input
+disabled 	0
+enabled 	1
+
+@ ch1framesize 1 21 22 r list
+Chan 1 Frame Size
+2mb 		0
+4mb 		1
+8mb 		2
+16mb 		3
+
+@ ch1rgbrange 1 24 24 rws list
+RGB Range
+black@0x00 	0
+black@0x40 	1
+
+@ ch1pciframe 2 0 31 rw value
+Chan 1 PCI Frame
+
+@ ch1output 3 0 31 rw value
+Chan 1 Output Frame
+
+@ ch1input 4 0 31 rw value
+Chan 1 Input Frame
+
+#
+# Chan 2 Registers
+
+@ ch2mode 5 0 0 rws list
+Chan 2 Mode
+playback 	0
+capture 	1
+
+# Note:
+# Model BGRA8 (2) is called ARGB in the AJA docs
+# and is listed as a Windows format.
+# Model ARGB8 (3) is called RGBA in the AJA docs
+# and is listed as a Mac format.
+# Model RGBA8 (6) is called ABGR in the AJA docs
+# and is listed as an OpenGL format.
+# We chose to identify these color models based
+# on thier true little endian byte order.
+@ ch2format 5 1 4 rws list
+Chan 2 Format
+ycbcr10 	0
+ycbcr8 		1
+bgra8 		2
+argb8 		3
+rgb10 		4
+ycbcr8_rev 	5
+rgba8 		6
+dpx_rgb10 	7
+dpx_ycbcr10 	8
+ycbcr8_dvcpro 	9
+ycbcr8_qrez 	10
+ycbcr8_hdv 	11
+rgb8 		12
+bgr8 		13
+dpx_rgb10_le 	15
+
+@ ch2disable 5 7 7 rws list
+Chan 2 Disable
+disabled 	0
+enabled 	1
+
+@ ch2viper 5 9 9 rws list
+Chan 2 Viper Squeeze
+disabled 	0
+enabled 	1
+
+@ ch2flipvert 5 10 10 rws list
+Chan 2 Flip Vertical
+disabled 	0
+enabled 	1
+
+@ ch2sfield 5 12 12 rws list
+Chan 2 Single Field
+disabled 	0
+enabled 	1
+
+@ ch2dither 5 16 16 rws list
+Chan 2 Dither Input
+disabled 	0
+enabled 	1
+
+@ ch2pciframe 6 0 31 rw value
+Chan 2 PCI Frame
+
+@ ch2output 7 0 31 rw value
+Chan 2 Output Frame
+
+@ ch2input 8 0 31 rw value
+Chan 2 Input Frame
+
+# Video processing Registers
+# 
+
+@ vpc_mux1 9 0 1 rws list
+Video Processing Control - Mux1
+zero 		0
+fgv 		1
+
+@ vpc_mux2 9 2 3 rws list
+Video Processing Control - Mux2
+fkey 		0
+mix 		1
+split 		2
+
+@ vpc_mux3 9 4 5 rws list
+Video Processint Control - Mux3
+zero 		0
+fgv 		1
+
+@ vpc_mux4 9 6 7 rws list
+Video Processing Control - Mux4
+bgv 		0
+bgvxbgkey 	1
+
+@ vpc_mux5 9 8 10 rws list
+Video Processing Control - Mux5
+bgv 		0
+fgv 		1
+fgkey 		2
+bgkey 		3
+keymix 		4
+secv 		5
+
+@ vpc_limiting 9 11 12 rws list
+Video Processing Control - Limiting
+legalsdi 	0
+illegal 	1
+broadcast 	2
+
+@ vpc_fgcont 9 20 21 rws list
+Video Processing Control - Foreground Control
+full 		0
+shaped 		1
+unshaped	2
+
+@ vpc_bgcont 9 22 23 rws list
+Video Processing Control - Background Control
+full		0
+shaped 		1
+unshaped 	2
+
+@ vpc_mode 9 24 25 rws list
+Video Processing Control - Mode
+fgon		0
+mix		1
+split 		2
+fgoff 		3
+
+@ vpc_syncfail 9 27 27 r list
+Video Processing Control - Sync Fail
+insync		0
+outofsync	1
+
+@ vpc_standard 9 28 30 rws list
+Video Processing Control - Standard
+1080i		0
+720p		1
+480i		2
+576i		3
+1080p		4
+1556i		5
+
+@ vpcc_fgv 10 0 2 rws list
+Video Processing Crosspoint - Foreground Video
+chan1 		0
+chan2 		1
+input1 		2
+input2 		3
+matte 		4
+chan1key 	5
+chan2key 	6
+
+@ vpcc_bgv 10 4 6 rws list
+Video Processing Crosspoint - Background Video
+chan1 		0
+chan2 		1
+input1 		2
+input2 		3
+matte 		4
+chan1key 	5
+chan2key 	6
+
+@ vpcc_fgkey 10 8 10 rws list
+Video Processing Crosspoint - Foreground Key
+chan1key 	0
+chan2key 	1
+input1 		2
+input2 		3
+matte 		4
+
+@ vpcc_bgkey 10 12 14 rws list
+Video Processing Crosspoint - Background Key
+chan1key 	0
+chan2key 	1
+input1 		2
+input2 		3
+matte 		4
+
+@ vpcc_secv 10 16 18 rws list
+Video Processing Crosspoint - Secondary Video
+chan1key 	0
+chan2key 	1
+input1 		2
+input2 		3
+matte 		4
+
+@ mixer 11 0 31 rws range
+Mixer Value
+0 0x10000
+
+@ splitstart 12 0 15 rws value
+Split Screen Start
+
+@ splitslope 12 16 29 rws value
+Split Screen Slope
+
+@ splittype 12 30 31 rws value
+Split Screen Type
+horiz 		0
+vert 		1
+horizslit 	2
+vertslit 	3
+
+@ mattecb 13 0 9 rws value
+Matte Cb Value
+
+@ mattey 13 10 19 rws value
+Matte Y Value
+
+@ mattecr 13 20 29 rws value
+Matte Cr Value
+
+@ horiztiming 14 0 15 rws value
+Horizontal Timing
+
+@ verttiming 14 16 31 rws value
+Vertical Timing
+
+@ panhoriz 15 0 11 rws value
+Pan Horizontal Offset
+
+@ panvert 15 12 23 rws value
+Pan Vertical Offset
+
+@ panwindow 15 30 31 rws list
+Pan window size
+disabled 	0
+reserved 	1
+2048x1080 	2
+1920x1080 	3
+
+@ vidfw_data 17 0 7 w value
+Video Firmware Data
+
+@ vidfw_program 17 8 8 w value
+Video Firmware Program
+
+@ vidfw_ready 17 8 8 r value
+Video Firmware Ready
+
+@ vidfw_done 17 9 9 r value
+Video Firmware Done
+
+@ vidfw_reset 17 10 10 w value
+Video Firmware Reset
+
+@ vidfw_pcix 17 29 29 rw value
+Video Firmware Programming PCI-X programming mode
+
+@ outputline 18 0 31 r value
+Output Line Number
+
+@ outputirqenable 20 0 0 rw value
+Output IRQ Enable
+
+@ input1irqenable 20 1 1 rw value
+Input1 IRQ Enable
+
+@ input2irqenable 20 2 2 rw value
+Input2 IRQ Enable
+
+@ audioirqenable 20 3 3 rw value
+Audio 50Hz IRQ Enable (depreciated)
+
+@ aplaywrapirqenable 20 4 4 rw value
+Audio Playback Wrap IRQ Enable (depreciated)
+
+@ acapwrapirqenable 20 5 5 rw value
+Audio Capture Wrap IRQ Enable (depreciated)
+
+@ audiowrapirqenable 20 6 6 rw value
+Audio Wrap IRQ Enable
+
+@ uarttxirqenable 20 7 7 rw value
+UART Tx IRQ Enable
+
+@ uartrxirqenable 20 8 8 rw value
+UART Rx IRQ Enable
+
+@ uartrxirqclear 20 15 15 w value
+UART Rx IRQ Clear
+
+@ uarttxirqclear 20 24 24 w value
+UART Tx IRQ Clear
+
+@ audiowrapirqclear 20 25 25 w value
+Audio Wrap IRQ Clear
+
+@ acapwrapirqclear 20 26 26 w value
+Audio Capture Wrap IRQ Clear (depreciated)
+
+@ aplaywrapirqclear 20 27 27 w value
+Audio Playback Wrap IRQ Clear (depreciated)
+
+@ audioirqclear 20 28 28 w value
+Audio 50Hz IRQ Clear (depreciated)
+
+@ input2irqclear 20 29 29 w value
+Input 2 IRQ Clear
+
+@ input1irqclear 20 30 30 w value
+Input 1 IRQ Clear
+
+@ outputirqclear 20 31 31 w value
+Output IRQ Clear
+
+@ boardversion 21 0 3 r value
+Board Version Number
+
+@ fpgaversion 21 4 11 r value
+FPGA Version Number
+
+@ input2vblank 21 18 18 r toggle
+Input 2 Vertical Blank Active
+
+@ input2field 21 19 19 r value
+Input 2 Field
+
+@ input1vblank 21 20 20 r toggle
+Input 1 Vertical Blank Active
+
+@ input1field 21 21 21 r value
+Input 1 Field
+
+@ outputvblank 21 22 22 r toggle
+Output Vertical Blank Active
+
+@ outputfield 21 23 23 r value
+Output Field
+
+@ uartrxirq 21 15 15 r value
+UART Rx IRQ Active
+
+@ uarttxirq 21 24 24 r value
+UART Tx IRQ Active
+
+@ audiowrapirq 21 25 25 r value
+Audio Wrap IRQ Active
+
+@ acapwrapirq 21 26 26 r value
+Audio Capture Wrap IRQ Active (depreciated)
+
+@ aplaywrapirq 21 27 27 r value
+Audio Playback Wrap IRQ Active (depreciated)
+
+@ audioirq 21 28 28 r value
+Audio 50Hz IRQ Active (depreciated)
+
+@ input2irq 21 29 29 r value
+Input 2 IRQ Active
+
+@ input1irq 21 30 30 r value
+Input 1 IRQ Active
+
+@ outputirq 21 31 31 r value
+Output Active
+
+
+@ input1framerate 22 0 2 r list
+Input 1 Frame Rate
+60 			1
+59.940 			2
+30 			3
+29.970 			4
+25 			5
+24 			6
+23.976 			7
+
+@ input1autotime 22 3 3 r toggle
+Input 1 Autotime
+
+@ input1format 22 4 6 r list
+Input 1 Format
+525 			1
+625 			2
+750 			3
+1125 			4
+1250 			5
+1035 			7
+
+@ input1prog 22 7 7 r toggle
+Input 1 Progressive Flag
+
+@ input2framerate 22 8 10 r list
+Input 2 Frame Rate
+60 			1
+59.940 			2
+30 			3
+29.970 			4
+25 			5
+24 			6
+23.976 			7
+
+@ input2autotime 22 11 11 r toggle
+Input 2 Autotime
+
+@ input2format 22 12 14 r list
+Input 2 Format
+525 			1
+625 			2
+750 			3
+1125 			4
+1250 			5
+1035 			7
+
+@ input2prog 22 15 15 r toggle
+Input 2 Progressive Flag
+
+@ refframerate 22 16 19 r list
+Reference Frame Rate
+60 			1
+59.940 			2
+30 			3
+29.970 			4
+25 			5
+24 			6
+23.976 			7
+
+@ refformat 22 20 22 r list
+Reference Format
+525 			1
+625 			2
+750 			3
+1125 			4
+1250 			5
+1035 			7
+
+@ refprog 22 23 23 r toggle
+Reference Progressive Flag
+
+@ input1extgeo 22 30 30 r value
+Input 1 Extended Geometry
+
+@ input1extframerate 22 28 28 r value
+Input 1 Extended Frame Rate
+
+@ input2extgeo 22 31 31 r value
+Input 2 Extended Frame Geometry
+
+@ input2extframerate 22 29 29 r value
+Input 2 Extended Frame Rave
+
+@ aes12invalid 22 24 24 r toggle
+AES 1/2 Invalid Data
+
+@ aes34invalid 22 25 25 r toggle
+AES 3/4 Invalid Data
+
+@ aes56invalid 22 26 26 r toggle
+AES 5/6 Invalid Data
+
+@ aes78invalid 22 27 27 r toggle
+AES 7/8 Invalid Data
+
+@ eaud1c12 23 0 0 r toggle
+Embedded Audio Group 1 - Ch 1/2 Present
+
+@ eaud1c34 23 1 1 r toggle
+Embedded Audio Group 1 - Ch 3/4 Present
+
+@ eaud2c12 23 2 2 r toggle
+Embedded Audio Group 2 - Ch 1/2 Present
+
+@ eaud2c34 23 3 3 r toggle
+Embedded Audio Group 2 - Ch 3/4 Present
+
+@ eaud3c12 23 4 4 r toggle
+Embedded Audio Group 3 - Ch 1/2 Present
+
+@ eaud3c34 23 5 5 r toggle
+Embedded Audio Group 3 - Ch 3/4 Present
+
+@ eaud4c12 23 6 6 r toggle
+Embedded Audio Group 4 - Ch 1/2 Present
+
+@ eaud4c34 23 7 7 r toggle
+Embedded Audio Group 4 - Ch 3/4 Present
+
+@ atoneoutput 24 1 1 rws list
+Audio Tone Output Enable
+disabled 	0
+enabled 	1
+
+@ aplaysize 24 2 2 rws list
+Audio 20bit Output
+24bit 		0
+20bit 		1
+
+@ audioloopback 24 3 3 rws list
+Audio Loopback Enable
+disabled 	0
+enabled 	1
+
+@ acapenable 24 0 0 rw toggle
+Audio Capture Enable
+
+@ acapreset 24 8 8 rw toggle
+Audio Capture Reset
+
+@ aplayreset 24 9 9 rw toggle
+Audio Playback Reset
+
+@ amute12 24 4 4 rws list
+Audio Mute Ch 1/2
+off		0
+on		1
+
+@ amute34 24 5 5 rws list
+Audio Mute Ch 3/4
+off 		0
+on 		1
+
+@ amute56 24 6 6 rws list
+Audio Mute Ch 5/6
+off		0
+on 		1
+
+@ amute78 24 17 17 rws list
+Audio Mute Ch 7/8
+off		0
+on 		1
+
+@ aplaypause 24 11 11 rw toggle
+Audio Playback Pause
+
+@ eaud2supress 24 15 15 rws list
+Output 2 Embedded Audio Supress
+disabled 	0
+enabled 	1
+
+@ eaud1supress 24 13 13 rws list
+Output 1 Embedded Audio Supress
+disabled 	0
+enabled 	1
+
+@ audio8chan 24 16 16 rws list
+Enable 8 channels of audio
+disabled 	0
+enabled 	1
+
+@ audio96khz 24 18 18 rws list
+Enable 96KHz audio sample rate
+disabled 	0
+enabled 	1
+
+@ audioraw 24 19 19 rws list
+Enable raw AES/EBU recording from ch1&2
+disabled 	0
+enabled 	1
+
+@ audio16chan 24 20 20 rws list
+Enable 16 channels of audio
+disabled 	0
+enabled 	1
+
+@ audio8chansup 24 23 23 r toggle
+8 Channel Audio Supported
+
+@ eaudsup 24 22 22 r toggle
+Embedded Audio Supported
+
+@ aessup 24 21 21 r toggle
+AES/EBU Supported
+
+@ kboxmonitor 24 24 25 rws list
+KBOX Audio Monitor Output
+ch12 		0
+ch34 		1
+ch56 		2
+ch78 		3
+
+@ kboxinput 24 26 26 rws list
+KBOX Input Selection
+bnc 		0
+xlr 		1
+
+@ audiocable 24 27 28 r list
+Audio Cable Type
+bnc 		0
+kbox 		1
+xlr		2
+
+@ audiobigbuffer 24 30 31 rws list
+Audio Buffer Size
+1MB		0
+4MB 		1
+
+@ ain12select 25 0 3 rws list
+Audio Buffer 1/2 Select
+aes 		0
+sdi_g1c12 	1
+sdi_g1c34 	2
+sdi_g2c12 	3
+sdi_g2c34 	4
+sdi_g3c12 	5
+sdi_g3c34 	6
+sdi_g4c12 	7
+sdi_g4c34 	8
+
+@ ain34select 25 4 7 rws list
+Audio Buffer 3/4 Select
+aes 		0
+sdi_g1c12 	1
+sdi_g1c34 	2
+sdi_g2c12 	3
+sdi_g2c34 	4
+sdi_g3c12 	5
+sdi_g3c34 	6
+sdi_g4c12 	7
+sdi_g4c34 	8
+
+@ ain56select 25 8 11 rws list
+Audio Buffer 5/6 Select
+aes 		0
+sdi_g1c12 	1
+sdi_g1c34 	2
+sdi_g2c12 	3
+sdi_g2c34 	4
+sdi_g3c12 	5
+sdi_g3c34 	6
+sdi_g4c12 	7
+sdi_g4c34 	8
+
+@ ain78select 25 12 15 rws list
+Audio Buffer 7/8 Select
+aes 		0
+sdi_g1c12 	1
+sdi_g1c34 	2
+sdi_g2c12 	3
+sdi_g2c34 	4
+sdi_g3c12 	5
+sdi_g3c34 	6
+sdi_g4c12 	7
+sdi_g4c34 	8
+
+@ eaudselect 25 16 16 rws list
+Embedded Audio Input Select
+input1 		0
+input2 		1
+
+@ aplaylast 26 0 19 r value
+Audio Playback Last Address
+
+@ acaplast 27 0 19 r value
+Audio Capture Last Address
+
+@ audiocount 28 0 31 r value
+48KHz Audio Counter
+
+@ ch1rp188dbb 29 0 31 rw value
+Chan 1 RP188 DBB
+
+@ ch1rp188dbb1 29 0 7 rw value
+Chan 1 RP188 DBB 1
+
+@ ch1rp188dbb2 29 8 15 rw value
+Chan 1 RP188 DBB 2
+
+@ ch1rp188recv 29 16 16 r value
+Chan 1 RP188 recieved
+
+@ ch1rp188valid 29 17 17 r value
+Chan 1 RP188 recieved valid
+
+@ ch1rp188filter 29 24 31 rw value
+Chan 1 RP188 filter
+
+@ ch1rp188_1 30 0 31 rw value
+Chan 1 RP188 Bits 0-31
+
+@ ch1rp188_2 31 0 31 rw value
+Chan 1 RP188 Bits 32-63
+
+@ dma1hadd 32 0 31 rw value
+DMA 1 Host Address
+
+@ dma1cadd 33 0 29 rw value
+DMA 1 Card Address
+
+@ dma1count 34 0 31 rw value
+DMA 1 Word Count
+
+@ dma1next 35 0 31 rw value
+DMA 1 Next Descriptor
+
+@ dma2hadd 36 0 31 rw value
+DMA 2 Host Address
+
+@ dma2cadd 37 0 31 rw value
+DMA 2 Card Address
+
+@ dma2count 38 0 31 rw value
+DMA 2 Word Count
+
+@ dma2next 39 0 31 rw value
+DMA 2 Next Descriptor
+
+@ dma3hadd 40 0 31 rw value
+DMA 3 Host Address
+
+@ dma3cadd 41 0 31 rw value
+DMA 3 Card Address
+
+@ dma3count 42 0 31 rw value
+DMA 3 Word Count
+
+@ dma3next 43 0 31 rw value
+DMA 3 Next Descriptor
+
+@ dma1go 48 0 0 w value
+DMA 1 GO
+
+@ dma2go 48 1 1 w value
+DMA 2 GO
+
+@ dma3go 48 2 2 w value
+DMA 3 GO
+
+@ dma4go 48 3 3 w value
+DMA 4 GO
+
+@ dma1busy 48 0 0 r value
+DMA 1 Busy
+
+@ dma2busy 48 1 1 r value
+DMA 2 Busy
+
+@ dma3busy 48 2 2 r value
+DMA 3 Busy
+
+@ dma4busy 48 3 3 r value
+DMA 4 Busy
+
+@ force64bit 48 4 4 rw toggle
+Force card to use 64bit PCI
+
+@ detect64bit 48 5 5 r toggle
+Detect 64bit PCI
+
+@ strapenabled 48 7 7 rw toggle
+Strap Resistor Enabled
+
+@ firmwarerev 48 8 15 r value
+Firmware Revision Number
+
+@ viv 48 26 26 r value
+Virtex Interrupt Validation
+
+@ dma1irq 48 27 27 r value
+DMA 1 IRQ Active
+
+@ dma2irq 48 28 28 r value
+DMA 2 IRQ Active
+
+@ dma3irq 48 29 29 r value
+DMA 3 IRQ Active
+
+@ dma4irq 48 30 30 r value
+DMA 4 IRQ Active
+
+@ buserrorirq 48 31 31 r value
+Bus Error IRQ Active
+
+@ dma1irqenable 49 0 0 rw value
+DMA 1 IRQ Enable
+
+@ dma2irqenable 49 1 1 rw value
+DMA 2 IRQ Enable
+
+@ dma3irqenable 49 2 2 rw value
+DMA 3 IRQ Enable
+
+@ dma4irqenable 49 3 3 rw value
+DMA 4 IRQ Enable
+
+@ buserrorirqenable 49 4 4 rw value
+Bus Error IRQ Enable
+
+@ dma1irqclear 49 27 27 w value
+Clear DMA 1 IRQ
+
+@ dma2irqclear 49 28 28 w value
+Clear DMA 2 IRQ
+
+@ dma3irqclear 49 29 29 w value
+Clear DMA 3 IRQ
+
+@ dma4irqclear 49 30 30 w value
+Clear DMA 4 IRQ
+
+@ buserrorirqclear 49 31 31 w value
+Clear Bus Error IRQ Error
+
+@ boardid 50 0 31 r value
+Board ID
+
+@ seriallow 54 0 31 r value
+Board Serial Low
+
+@ serialhigh 55 0 31 r value
+Board Serial High
+
+@ ch2rp188dbb 64 0 31 rw value
+Input/Output 2 RP188 DBB
+
+@ ch2rp188valid 64 17 17 r value
+Input 2 RP188 Valid
+
+@ ch2rp188filter 64 24 31 rw value
+Channel 2 RP188 filter
+
+@ ch2rp188_1 65 0 31 rw value
+Input/Output 2 RP188 low
+
+@ ch2rp188_2 66 0 31 rw value
+Input/Output 2 RP188 high
+
+@ ch1lutcont 68 0 31 rw value
+Chan 1 LUT Control
+
+@ uartout 70 0 7 w value
+UART transmit data
+
+@ uartin 71 0 7 r value
+UART recieve data
+
+@ uartenabletx 72 0 0 rw value
+UART transmit enable
+
+@ uartstatustx 72 1 2 r list
+UART transmit fifo status
+hasdata			0
+empty			1
+full			2
+undefined		3
+
+@ uartenablerx 72 3 3 rw value
+UART recieve enable
+
+@ uartstatusrx 72 4 7 rw value
+UART recieve status
+
+@ uartrxparityerror 72 6 6 rw value
+UART rx parity error
+
+@ uartrxoverrun 72 7 7 rw value
+UART rx fifo overrun
+
+@ dma1hadd_high 100 0 31 rw value
+DMA 1 Host Address (MSB 32)
+
+@ dma1next_high 101 0 31 rw value
+DMA 1 Next Descriptor Address (MSB 32)
+	
+@ dma2hadd_high 102 0 31 rw value
+DMA 1 Host Address (MSB 32)
+
+@ dma2next_high 103 0 31 rw value
+DMA 1 Next Descriptor Address (MSB 32)
+	
+@ dma3hadd_high 104 0 31 rw value
+DMA 1 Host Address (MSB 32)
+
+@ dma3next_high 105 0 31 rw value
+DMA 1 Next Descriptor Address (MSB 32)
+
+@ dma4hadd_high 106 0 31 rw value
+DMA 1 Host Address (MSB 32)
+
+@ dma4next_high 107 0 31 rw value
+DMA 1 Next Descriptor Address (MSB 32)
+
+@ aoutdac 128 0 4 rws list
+Analog Out - DAC Mode
+480i_rgb 		0
+480i_ypbpr_smpte 	1
+480i_ypbpb_betacam 	2
+480i_ypbpr_japan 	3
+480i_composite 		4
+480i_composite_japan 	5
+576i_rgb 		6
+576i_ypbpr_smpte 	7
+576i_composite 		8
+1080i_rgb 		9
+1080psf_rgb 		10
+720p_rgb 		11
+1080i_ypbpr 		12
+1080psf_ypbpr 		13
+720p_ypbpr 		14
+1080i_rgb_vga 		15
+1080psf_rgb_vga 	16
+720p_rgb_vga 		17
+
+@ sdi1outstd 129 0 2 rws list
+SDI 1 Output Standard
+1080i 		0
+720p 		1
+480i 		2
+576i 		3
+1080p 		4
+1556i 		5
+
+@ sdi1out2kline 129 3 3 rws list
+SDI 1 Output 2048x1080 mode
+disabled 	0
+enabled 	1
+
+@ sdi1outhblankrgb 129 7 7 rws list
+SDI 1 Output HBlank RGB range
+black@0x00 	0
+black@0x40 	1
+
+@ sdi2outstd 130 0 2 rws list
+SDI 2 Output Standard
+1080i 		0
+720p 		1
+480i 		2
+576i 		3
+1080p 		4
+1556i 		5
+
+@ sdi2out2kline 130 3 3 rws list
+SDI 2 Output 2048x1080 mode
+disabled 	0
+enabled 	1
+
+@ sdi2outhblankrgb 130 7 7 rws list
+SDI 2 Output HBlank RGB range
+black@0x00 	0
+black@0x40 	1
+
+@ inconvstd 131 0 2 rws list
+Input Converter Standard
+1080i 		0
+720p 		1
+480i 		2
+576i 		3
+1080p 		4
+1556i 		5
+
+@ downconvmode 131 4 5 rws list
+Downconversion Mode
+letterbox 	0
+crop 		1
+anamorphic 	2
+
+@ resconv23 131 6 6 rws list
+Resolution converter add 2:3
+disabled 	0
+enabled 	1
+
+@ upconvmode 131 8 10 rws list
+Upconversion Mode
+anamorphic 		0
+pillarbox_4x3 		1
+zoom_14x9 		2
+zoom_letterbox 		3
+zoom_wide 		4
+
+@ outconvstd 131 12 14 rws list
+Output Converter Standard
+1080i 		0
+720p 		1
+480i 		2
+576i 		3
+1080p 		4
+1556i 		5
+
+@ resconvsdanim 131 20 21 rws list
+SD Anamorphic Conversion Mode
+letterbox 	0
+hcrop 		1
+pillarbox 	2
+vcrop		3
+
+@ lut1xpt 136 0 7 rws list
+LUT 1 Crosspoint
+black 			0
+dlinput 		0x83
+csconv1_rgb 		0x85
+chan1_rgb 		0x88
+chan2_rgb 		0x8F
+csconv2_rgb 		0x90
+
+@ csconvxpt 136 8 15 rws list
+Colorspace Converter 1 Crosspoint
+black 			0
+input1	 		1
+input2	 		2
+resconv 		6
+chan1_ycbcr 		8
+chan2_ycbcr 		0xF
+dlinput 		0x83
+lut1_rgb 		0x84
+chan1_rgb 		0x88
+lut2_rgb 		0x8D
+chan2_rgb 		0x8F
+
+@ csconv1xpt 136 8 15 rws list
+Colorspace Converter 1 Crosspoint
+black 			0
+input1	 		1
+input2	 		2
+resconv 		6
+chan1_ycbcr 		8
+chan2_ycbcr 		0xF
+dlinput 		0x83
+lut1_rgb 		0x84
+chan1_rgb 		0x88
+lut2_rgb 		0x8D
+chan2_rgb 		0x8F
+
+@ resconvxpt 136 16 23 rws list
+Up/Down Converter Crosspoint
+black 			0
+input1	 		1
+input2	 		2
+lut1_ycbcr 		4
+csconv1_ycbcr 		5
+chan1_ycbcr 		8
+sync1_ycbcr             9
+sync2_ycbcr             0xA
+chan2_ycbcr 		0xF
+csconv2_ycbcr 		0x10
+lut1_rgb 		0x84
+csconv1_rgb 		0x85
+lut2_rgb 		0x8D
+csconv2_rgb 		0x90
+
+@ compressxpt 136 24 31 rws list
+Compressor Crosspoint
+black 			0
+
+@ chan1xpt 137 0 7 rws list
+Channel 1 Crosspoint
+black 			0
+input1	 		1
+input2 			2
+lut1_ycbcr 		4
+csconv1_ycbcr 		5
+resconv 		6
+csconv2_ycbcr 		0x10
+dlinput 		0x83
+lut1_rgb 		0x84
+csconv1_rgb 		0x85
+lut2_rgb 		0x8D
+csconv2_rgb 		0x90
+
+@ dloutxpt 137 24 31 rws list
+Dual-Link Output Crosspoint
+black 			0
+compress 		7
+dlinput 		0x83
+lut1_rgb 		0x84
+csconv1_rgb 		0x85
+chan1_rgb 		0x88
+lut2_rgb 		0x8D
+chan2_rgb 		0x8F
+csconv2_rgb 		0x90
+
+
+@ aoutxpt 138 0 7 rws list
+Analog Out Crosspoint
+black 			0
+input1 			1
+input2			2
+lut1_ycbcr 		4
+csconv1_ycbcr 		5
+resconv 		6
+chan1_ycbcr 		8
+sync1_ycbcr             9
+sync1_rgb               0x89
+sync2_ycbcr             0xA
+sync2_rgb               0x8A
+dlout 			0xB
+chan2_ycbcr 		0xF
+mix_ycbcr 		0x12
+csconv2_ycbcr 		0x10
+dlinput 		0x83
+lut1_rgb 		0x84
+csconv1_rgb 		0x85
+chan1_rgb 		0x88
+lut2_rgb 		0x8D
+chan2_rgb 		0x8F
+csconv2_rgb 		0x90
+
+@ sdi1outxpt 138 8 15 rws list
+SDI 1 Output Crosspoint
+black 			0
+input1 			1
+input2 			2
+csconv1_ycbcr 		5
+resconv 		6
+compress 		7
+chan1_ycbcr 		8
+sync1_ycbcr             9
+sync2_ycbcr             0xA
+dlout 			0xB
+csconv1key_ycbcr 	0xE
+chan2_ycbcr 		0xF
+csconv2_ycbcr 		0x10
+csconv2key_ycbcr 	0x11
+mix_ycbcr 		0x12
+mixkey_ycbcr 		0x13
+
+@ sdi2outxpt 138 16 23 rws list
+SDI 2 Output Crosspoint
+black 			0
+input1			1
+input2 			2
+csconv1_ycbcr 		5
+resconv 		6
+compress 		7
+chan1_ycbcr 		8
+sync1_ycbcr             9
+sync2_ycbcr             0xA
+dlout 			0xB
+csconv1key_ycbcr 	0xE
+chan2_ycbcr 		0xF
+csconv2_ycbcr 		0x10
+csconv2key_ycbcr 	0x11
+mix_ycbcr 		0x12
+mixkey_ycbcr 		0x13
+
+@ csconvkeyxpt 138 24 31 rws list
+ColorSpace Converter Key Crosspoint
+black 			0
+input1	 		1
+input2	 		2
+compress 		7
+
+@ mixfgvidxpt 139 0 7 rws list
+Mixer Foreground Video Crosspoint
+black 			0
+input1	 		1
+input2	 		2
+csconv1_ycbcr 		5
+resconv 		6
+chan1_ycbcr 		8
+chan2_ycbcr 		0xF
+mix_ycbcr 		0x12
+csconv2_ycbcr 		0x10
+csconv1_rgb 		0x85
+csconv2_rgb 		0x90
+
+@ mixfgkeyxpt 139 8 15 rws list
+Mixer Foreground Key Crosspoint
+black 			0
+input1	 		1
+input2	 		2
+resconv 		6
+chan1_ycbcr 		8
+csconv1key_ycbcr 	0xE
+chan2_ycbcr 		0xF
+csconv2_ycbcr 		0x10
+csconv2key_ycbcr 	0x11
+mixkey_ycbcr 		0x13
+csconv1_rgb 		0x85
+
+@ mixbgvidxpt 139 16 23 rws list
+Mixer Background Video Crosspoint
+black 			0
+input1	 		1
+input2	 		2
+csconv1_ycbcr 		5
+resconv 		6
+chan1_ycbcr 		8
+chan2_ycbcr 		0xF
+csconv2_ycbcr 		0x10
+mix_ycbcr 		0x12
+csconv1_rgb 		0x85
+csconv2_rgb 		0x90
+
+@ mixbgkeyxpt 139 24 31 rws list
+Mixer Background Key Crosspoint
+black 			0
+input1	 		1
+input2	 		2
+resconv 		6
+chan1_ycbcr 		8
+csconv1key_ycbcr 	0xE
+chan2_ycbcr 		0xF
+csconv2_ycbcr 		0x10
+csconv2key_ycbcr 	0x11
+mixkey_ycbcr 		0x13
+csconv1_rgb 		0x85
+
+@ chan2xpt 140 0 7 rws list
+FrameBuffer 2 Crosspoint
+black 			0
+input1	 		1
+input2	 		2
+lut1_ycbcr 		4
+csconv1_ycbcr 		5
+csconv2_ycbcr 		0x10
+dlinput 		0x83
+lut1_rgb 		0x84
+chan1_rgb 		0x88
+lut2_rgb 		0x8D
+csconv2_rgb 		0x90
+
+@ lut2xpt 140 8 15 rws list
+LUT 2 Crosspoint
+black 			0
+dlinput 		0x83
+csconv1_rgb 		0x85
+chan1_rgb 		0x88
+chan2_rgb 		0x8F
+csconv2_rgb 		0x90
+
+@ csconv2xpt 140 16 23 rws list
+Colorspace Converter 2 Crosspoint
+black 			0
+input1	 		1
+input2	 		2
+resconv 		6
+chan1_ycbcr 		8
+chan2_ycbcr 		0xF
+dlinput 		0x83
+lut1_rgb 		0x84
+chan1_rgb 		0x88
+lut2_rgb 		0x8D
+chan2_rgb 		0x8F
+
+@ csconv2keyxpt 140 24 31 rws list
+ColorSpace Converter 2 Key Crosspoint
+black 			0
+input1	 		1
+input2	 		2
+
+@ csconv1coef0 142 0 10 rws value
+Colorspace Converter 1 Custom Coefficient 0
+
+@ csconv1coef1 142 16 26 rws value
+Colorspace Converter 1 Custom Coefficient 1
+
+@ csconv1syncfail 142 28 28 r value
+Colorspace Converter 1 sync fail
+
+@ csconv1alphafromkey 142 29 29 rws list
+Colorspace Converter 1 make alpha from key
+disabled 	0
+enabled 	1
+
+@ csconv1mode 142 30 30 rws list
+Colorspace Converter 1 Coefficient
+hd_coeff 		0
+sd_coeff 		1
+
+@ csconv1customcoef 142 31 31 rws list
+Colorspace Converter 1 use custom coefficents
+disabled 	0
+enabled 	1
+
+@ csconv1coef2 143 0 10 rws value
+Colorspace Converter 1 Custom Coefficient 2
+
+@ csconv1coef3 143 16 26 rws value
+Colorspace Converter 1 Custom Coefficient 3
+
+@ csconv1rgbrange 143 31 31 rws list
+Colorspace Converter 1 RGB range
+0x0-0x3FF 	0
+0x40-0x3C0 	1
+
+@ csconv1coef4 144 0 10 rws value
+Colorspace Converter 1 Custom Coefficient 4
+
+@ csconv1coef5 144 16 26 rws value
+Colorspace Converter 1 Custom Coefficient 5
+
+@ csconv1coef6 145 0 10 rws value
+Colorspace Converter 1 Custom Coefficient 6
+
+@ csconv1coef7 145 16 26 rws value
+Colorspace Converter 1 Custom Coefficient 7
+
+@ csconv1coef8 146 0 10 rws value
+Colorspace Converter 1 Custom Coefficient 8
+
+@ csconv1coef9 146 16 26 rws value
+Colorspace Converter 1 Custom Coefficient 9
+
+@ csconv2coef0 147 0 10 rws value
+Colorspace Converter 2 Custom Coefficient 0
+
+@ csconv2coef1 147 16 26 rws value
+Colorspace Converter 2 Custom Coefficient 1
+
+@ csconv2syncfail 147 28 28 r value
+Colorspace Converter 2 sync fail
+
+@ csconv2alphafromkey 147 29 29 rws list
+Colorspace Converter 2 make alpha from key
+disabled 	0
+enabled 	1
+
+@ csconv2mode 147 30 30 rws list
+Colorspace Converter 2 Coefficient
+hd_coeff 		0
+sd_coeff 		1
+
+@ csconv2customcoef 147 31 31 rws list
+Colorspace Converter 2 use custom coefficents
+disabled 	0
+enabled 	1
+
+@ csconv2coef2 148 0 10 rws value
+Colorspace Converter 2 Custom Coefficient 2
+
+@ csconv2coef3 148 16 26 rws value
+Colorspace Converter 2 Custom Coefficient 3
+
+@ csconv2rgbrange 148 31 31 rws list
+Colorspace Converter 2 RGB range
+0x0-0x3FF 	0
+0x40-0x3C0 	1
+
+@ csconv2coef4 149 0 10 rws value
+Colorspace Converter 2 Custom Coefficient 4
+
+@ csconv2coef5 149 16 26 rws value
+Colorspace Converter 2 Custom Coefficient 5
+
+@ csconv2coef6 150 0 10 rws value
+Colorspace Converter 2 Custom Coefficient 6
+
+@ csconv2coef7 150 16 26 rws value
+Colorspace Converter 2 Custom Coefficient 7
+
+@ csconv2coef8 151 0 10 rws value
+Colorspace Converter 2 Custom Coefficient 8
+
+@ csconv2coef9 151 16 26 rws value
+Colorspace Converter 2 Custom Coefficient 9
+
