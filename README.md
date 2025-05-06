@@ -6,9 +6,8 @@ kernels.  They're here mostly for historical and curiosity purposes.
 There's basically three drivers here:
 
 1. A driver for the [AJA](https://aja.com) line of PCI and PCIe video I/O boards.  All the boards 
-supported by this driver have gone end-of-life.  If you're looking for a driver 
-+ SDK for the modern boards, please check out the 
-[libajantv2 GitHub repo](https://github.com/aja-video/libajantv2)
+supported by this driver have gone end-of-life.  If you're looking for a driver & SDK for the modern 
+boards, please check out the [libajantv2 GitHub repo](https://github.com/aja-video/libajantv2)
 
 2. A driver for the [Adrienne Electronics](http://www.adrielec.com/) PCI and PCIe
 LTC timecode boards.
